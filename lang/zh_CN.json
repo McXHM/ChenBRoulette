@@ -1,0 +1,35 @@
+{
+  "item.handsaw": "手锯",
+  "item.beer": "啤酒",
+  "item.lens": "透镜",
+  "item.ciggy": "香烟",
+  "item.handcuffs": "手铐",
+  "item.gun": "枪",
+
+  "text.show.damage_multi": "使用手锯后，枪的伤害系数为：",
+  "text.show.recoil": "使用啤酒后，你退掉了一颗：",
+  "text.show.check_ammo": "使用透镜后，里面的子弹为：",
+  "text.show.heal": "使用香烟后，你的血量为：",
+  "text.show.lock": "使用手铐后，你锁住了玩家：",
+
+  "ammo.true": "实弹",
+  "ammo.false": "空弹",
+
+  "text.welcome": "欢迎来到陈B轮盘赌！输入名称以创建玩家",
+  "text.add.player.true": "玩家加入成功！",
+  "text.add.player.false": "玩家加入失败：玩家可能已满，按ENTER进入下一步！",
+  "text.full_player": "玩家数已满，即将开始游戏：",
+  "text.random_ammo": "随机子弹中……",
+  "text.next_operation": "执行下一步操作",
+  "text.player_of_operation": "本回合正在操作的玩家：",
+  "text.random_item": "抽取道具中……",
+  "text.please_try": "请选择（0为枪）：",
+  "text.command_error": "语法错误！",
+  "text.item.choice": "您选择了物品：",
+  "text.player.choice": "您选择了玩家：",
+  "text.target.choice": "你要向谁使用该物品：",
+  "text.player.not_found": "未找到ID：",
+
+  "gun.hits": "被打中了",
+  "gun.misses": "毫发无伤"
+}
