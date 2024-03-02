@@ -1,2 +1,4 @@
-package cn.mrxhm.gameobject;public class GameObject {
+package cn.mrxhm.gameobject;
+
+public interface GameObject {
 }
