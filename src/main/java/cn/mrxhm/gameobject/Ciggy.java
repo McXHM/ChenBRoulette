@@ -40,7 +40,7 @@ public class Ciggy implements Item{
 
     @Override
     public void use() {
-        int v =(new Random()).nextInt(15,11);
+        int v =(new Random()).nextInt(15,26);
         ChenBRoulette.player_s.heal(v);
         Printer.p("text.show.heal"+ ChenBRoulette.player_s.health+"/"+ GameUtils.max_health);
         getParent().removeItem(id);

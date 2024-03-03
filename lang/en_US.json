@@ -1,0 +1,43 @@
+{
+  "item.handsaw": "Handsaw",
+  "item.beer": "Beer",
+  "item.lens": "Lens",
+  "item.ciggy": "Ciggy",
+  "item.handcuffs": "Handcuffs",
+  "item.gun": "Gun",
+
+  "text.show.damage_multi": "After using the hand saw, the damage coefficient of the gun is: ",
+  "text.show.recoil": "After using beer, you returned one: ",
+  "text.show.check_ammo": "After using the lens, the bullets inside are: ",
+  "text.show.heal": "After using cigarettes, your health is: ",
+  "text.show.lock": "After using handcuffs, you locked the player: ",
+
+  "ammo.true": "LIVES",
+  "ammo.false": "EMPTIES",
+
+  "utils.max_health" : "Maximum HP: ",
+  "utils.min_damage_multi" :"Minimum damage multiplier: ",
+  "utils.max_damage_multi": "Maximum damage multiplier: ",
+  "utils.basic_damage" :"Basic damage: ",
+  "utils.max_ammo" : "Maximum number of bullets: ",
+  "utils.max_players" :"Maximum number of players:",
+  "utils.lang": "Language: ",
+
+  "text.welcome": "Welcome to ChenB Roulette! Enter a name to create a player",
+  "text.add.player.true": "who successfully joined!",
+  "text.add.player.false": "Player failed to join: The player may be full, press Enter to proceed to the next step!",
+  "text.full_player": "The number of players is full, and the game will start in : ",
+  "text.random_ammo": "In random bullets...",
+  "text.next_operation": "Perform the next step",
+  "text.player_of_operation": "Players currently operating in this round: ",
+  "text.random_item": "Extracting items...",
+  "text.please_try": "Please select id of item(0 as gun):",
+  "text.command_error": "Syntax error!",
+  "text.item.choice": "You have selected an item: ",
+  "text.player.choice": "You have selected a player: ",
+  "text.target.choice": "To whom do you want to use the item: ",
+  "text.player.not_found": "ID not found: ",
+
+  "gun.hits": "was hit",
+  "gun.misses": "was unharmed"
+}

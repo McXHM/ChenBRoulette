@@ -18,14 +18,14 @@ import java.util.Random;
 public class GameUtils {
     public static int max_players;
     public static List<Player> players;
-    public static String lang;
+    public static String lang = "en_US";
     public static File lang_file;
     public static HashMap<String, String> lang_map;
-    public static final double max_health = 100.0;
-    public static final double min_damage_multi = 0.5;
-    public static final double max_damage_multi = 2.5;
-    public static final double basic_damage = 10.0;
-    public static final int max_ammo = 10;
+    public static double max_health = 100.0;
+    public static double min_damage_multi = 0.5;
+    public static double max_damage_multi = 2.5;
+    public static double basic_damage = 10.0;
+    public static int max_ammo = 10;
     public static double damage_multi = 1.0;
 
     public static void randomDamageMulti() {
@@ -51,7 +51,9 @@ public class GameUtils {
     public static void init() throws IOException {
         max_players = 2;
         players = new ArrayList<>();
-        lang = "zh_CN";
+        if (lang == null) {
+            lang = "zh_CN";
+        }
         initLangFile(lang);
         parseLangFile();
     }
@@ -119,6 +121,23 @@ public class GameUtils {
     public static void fillAmmo() {
         Ammos.addAmmo((new Random()).nextInt(2, max_ammo + 1));
         Ammos.listAmmoAmount();
+    }
+
+    public static void newTurn() throws InterruptedException {
+        Thread.sleep(1000);
+        Printer.p("\f\rtext.random_ammo\n", false);
+        fillAmmo();
+        Thread.sleep(1000);
+        Printer.p("\rtext.random_item");
+        extractItem();
+        Thread.sleep(1000);
+        printAllPlayerInv();
+        ChenBRoulette.player_t = null;
+        damage_multi = 1.0;
+        ChenBRoulette.operation = Operation.PLAYER_CHOICE;
+        Printer.p("text.player_of_operation" + ChenBRoulette.player_s);
+        Printer.p("text.please_try");
+        ChenBRoulette.player_s.inv.listItems();
     }
 
     public static boolean addPlayer(Player player) {

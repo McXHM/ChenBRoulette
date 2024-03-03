@@ -15,6 +15,14 @@
   "ammo.true": "实弹",
   "ammo.false": "空弹",
 
+  "utils.max_health" : "最大血量：",
+  "utils.min_damage_multi" :"最小伤害乘数：",
+  "utils.max_damage_multi": "最大伤害乘数：",
+  "utils.basic_damage" :"基础伤害：",
+  "utils.max_ammo" : "最大子弹数：",
+  "utils.max_players" :"最大玩家数：",
+  "utils.lang": "语言：",
+
   "text.welcome": "欢迎来到陈B轮盘赌！输入名称以创建玩家",
   "text.add.player.true": "玩家加入成功！",
   "text.add.player.false": "玩家加入失败：玩家可能已满，按ENTER进入下一步！",

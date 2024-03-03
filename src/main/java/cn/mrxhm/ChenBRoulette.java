@@ -17,17 +17,65 @@ public class ChenBRoulette {
     public static Item item_c;
 
     public static void main(String[] args) throws IOException, InterruptedException {
-        initAll();
-        Printer.p("text.welcome");
-        interact();
-    }
-
-    public static void initAll() throws IOException {
+        loadConfig(args);
         GameUtils.init();
         Ammos.init();
         scan = new Scanner(System.in);
         operation = Operation.CREATE_PLAYER;
+        Printer.p("text.welcome");
+        interact();
     }
+
+    public static boolean loadConfig(String[] args) throws IOException {
+        boolean result = false;
+        for (String s : args) {
+            if (Pattern.matches("[a-z_]+=(\\d+(\\.\\d+)?)", s)) {
+                String[] conf = s.split("=");
+                if (conf.length == 2) {
+                    String key = conf[0];
+                    double value = Double.parseDouble(conf[1]);
+                    switch (key.toLowerCase()) {
+                        case "max_health" -> {
+                            GameUtils.max_health = value;
+                            Printer.p("utils.max_health" + GameUtils.max_health);
+                        }
+                        case "min_damage_multi" -> {
+                            GameUtils.min_damage_multi = value;
+                            Printer.p("utils.min_damage_multi" + GameUtils.min_damage_multi);
+                        }
+                        case "max_damage_multi" -> {
+                            GameUtils.max_damage_multi = value;
+                            Printer.p("utils.max_damage_multi" + GameUtils.max_damage_multi);
+                        }
+                        case "basic_damage" -> {
+                            GameUtils.basic_damage = value;
+                            Printer.p("utils.basic_damage" + GameUtils.basic_damage);
+                        }
+                        case "max_ammo" -> {
+                            GameUtils.max_ammo = (int) value;
+                            Printer.p("utils.max_ammo" + GameUtils.max_ammo);
+                        }
+                        case "max_players" -> {
+                            GameUtils.max_players = (int) value;
+                            Printer.p("utils.max_players" + GameUtils.max_players);
+                        }
+                    }
+                }
+                result = true;
+            } else if (Pattern.matches("lang=[a-zA-Z_]+", s)) {
+                String[] conf = s.split("=");
+                if (conf.length == 2) {
+                    GameUtils.lang = conf[1];
+                    GameUtils.initLangFile(GameUtils.lang);
+                    GameUtils.parseLangFile();
+                    Printer.p("utils.lang" + GameUtils.lang);
+                }
+                result = true;
+            }
+        }
+        return result;
+    }
+
 
     public static void interact() throws InterruptedException {
         System.out.print("\r>>> ");
@@ -109,8 +157,7 @@ public class ChenBRoulette {
 
                 operation = Operation.PLAYER_CHOICE;
             }
-        }
-        else if (Ammos.ammoList.size() > 0) {
+        } else {
             switch (operation) {
                 case PLAYER_CHOICE -> {
                     if (item_c != null) {
@@ -121,6 +168,10 @@ public class ChenBRoulette {
                         } else {
                             item_c.use();
                             item_c = null;
+                            if (Ammos.ammoList.isEmpty()) {
+                                GameUtils.newTurn();
+                                break;
+                            }
                             Thread.sleep(1500);
                             Printer.p("text.please_try");
                             player_s.inv.listItems();
@@ -147,12 +198,17 @@ public class ChenBRoulette {
                         }
                         Thread.sleep(1500);
                         operation = Operation.PLAYER_CHOICE;
-                        Printer.p("text.player_of_operation" + player_s);
-                        Printer.p("text.please_try");
-                        player_s.inv.listItems();
+                        if (!Ammos.ammoList.isEmpty()) {
+                            Printer.p("text.player_of_operation" + player_s);
+                            Printer.p("text.please_try");
+                            player_s.inv.listItems();
+                        }
                         GameUtils.damage_multi = 1.0;
                         player_t = null;
                         Ammos.removeAmmo();
+                    }
+                    if (Ammos.ammoList.isEmpty()) {
+                        GameUtils.newTurn();
                     }
                 }
                 case PLAYER_CHOICE_LOCK -> {
@@ -166,18 +222,6 @@ public class ChenBRoulette {
                     }
                 }
             }
-        } else {
-            Thread.sleep(1000);
-            Printer.p("\rtext.random_ammo\n", false);
-            GameUtils.fillAmmo();
-            Thread.sleep(1000);
-            Printer.p("\rtext.random_item");
-            GameUtils.extractItem();
-            Thread.sleep(1000);
-            GameUtils.printAllPlayerInv();
-            player_t = null;
-            GameUtils.damage_multi = 1.0;
-            operation = Operation.PLAYER_CHOICE;
         }
     }
 }
