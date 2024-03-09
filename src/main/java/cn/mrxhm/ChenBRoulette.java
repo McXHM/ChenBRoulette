@@ -9,13 +9,38 @@ import java.util.Random;
 import java.util.Scanner;
 import java.util.regex.Pattern;
 
+/**
+ * ChenBRoulette
+ */
 public class ChenBRoulette {
+    /**
+     * 输入
+     */
     public static Scanner scan;
+    /**
+     * 当前操作
+     */
     public static Operation operation;
+    /**
+     * 正在操作的玩家
+     */
     public static Player player_s;
+    /**
+     * 目标玩家
+     */
     public static Player player_t;
+    /**
+     * 被选择的物品
+     */
     public static Item item_c;
 
+    /**
+     * 主方法
+     *
+     * @param args 配置
+     * @throws IOException          抛出异常
+     * @throws InterruptedException 抛出异常
+     */
     public static void main(String[] args) throws IOException, InterruptedException {
         loadConfig(args);
         GameUtils.init();
@@ -26,6 +51,13 @@ public class ChenBRoulette {
         interact();
     }
 
+    /**
+     * 加载配置
+     *
+     * @param args 配置
+     * @return 是否存在配置
+     * @throws IOException 抛出异常
+     */
     public static boolean loadConfig(String[] args) throws IOException {
         boolean result = false;
         for (String s : args) {
@@ -76,7 +108,11 @@ public class ChenBRoulette {
         return result;
     }
 
-
+    /**
+     * 交互的方法
+     *
+     * @throws InterruptedException 抛出异常
+     */
     public static void interact() throws InterruptedException {
         System.out.print("\r>>> ");
         String input = scan.nextLine();
@@ -90,6 +126,11 @@ public class ChenBRoulette {
         }
     }
 
+    /**
+     * 执行指令的方法
+     *
+     * @param command 指令
+     */
     public static void interact(String command) {
         switch (operation) {
             case CREATE_PLAYER -> {
@@ -131,6 +172,11 @@ public class ChenBRoulette {
         }
     }
 
+    /**
+     * 更新游戏步骤的方法
+     *
+     * @throws InterruptedException 抛出异常
+     */
     public static void updateStep() throws InterruptedException {
         if (operation == Operation.CREATE_PLAYER) {
             if (GameUtils.players.size() == GameUtils.max_players) {
